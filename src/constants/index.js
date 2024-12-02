@@ -122,7 +122,7 @@ const experiences = [
     company_name: "Fiverr (Freelancing)",
     icon: "",
     iconBg: "#E6DEDD",
-    date: "Jan 2024 - Present",
+    date: "Jul 2018 - Present",
     points: [
       "Collaborated with UX/UI designers to translate design mockups into pixel-perfect, responsive interfaces, ensuring a consistent and visually appealing user experience across devices.",
       "Implemented server-side rendering (SSR) and static site generation (SSG) using Next.js, enhancing the application's performance and SEO capabilities",
@@ -134,7 +134,7 @@ const experiences = [
     company_name: "Upwork (Freelancing)",
     icon: "",
     iconBg: "#383E56",
-    date: "Jan 2024 - Present",
+    date: "May 2018 - Present",
     points: [
       "Developed and maintained various modules of a complex web application, employing React.js/Next.js and TypeScript for the frontend and consumed .Net, Django, Spring Boot and REST APIs  ",
       "Integrated third-party APIs and services to extend application functionalities, improving the overall user experience. ",
