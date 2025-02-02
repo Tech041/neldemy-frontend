@@ -1,7 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { dummyCourses } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
-
+import humanizeDuration from "humanize-duration";
 export const AppContext = createContext();
 export const AppContextProvider = (props) => {
   const [allCourses, setAllCourses] = useState([]);
@@ -28,6 +28,31 @@ export const AppContextProvider = (props) => {
     });
     return totalRating / course.courseRatings.length;
   };
+
+  // To calculate course chapter time
+  const calculateChapterTime = (chapter) => {
+    let time = 0;
+    chapter.chapterContent.map((lecture) => (time += lecture.lectureDuration));
+    return humanizeDuration(time * 60 * 1000, { units: ["h", "m"] });
+  };
+  // To calculate course duration
+  const calculateCourseDuaration = (course) => {
+    let time = 0;
+    course.courseContent.map((chapter) =>
+      chapter.chapterContent.map((lecture) => (time += lecture.lectureDuration))
+    );
+    return humanizeDuration(time * 60 * 1000, { units: ["h", "m"] });
+  };
+  // To calculate total number of lectures in the course
+  const calculateNumberOfLectures = (course) => {
+    let totalLectures = 0;
+    course.courseContent.forEach((chapter) => {
+      if (Array.isArray(chapter.chapterContent)) {
+        totalLectures += chapter.chapterContent.length;
+      }
+    });
+    return totalLectures
+  };
   const value = {
     currency,
     allCourses,
@@ -35,6 +60,7 @@ export const AppContextProvider = (props) => {
     calculateRating,
     isEducator,
     setIsEducator,
+    calculateChapterTime,calculateCourseDuaration,calculateNumberOfLectures
   };
   return (
     <AppContext.Provider value={value}>{props.children}</AppContext.Provider>

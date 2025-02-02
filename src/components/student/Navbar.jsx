@@ -3,6 +3,7 @@ import { assets } from "../../assets/assets";
 import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
 import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
+import { HiOutlineAcademicCap } from "react-icons/hi2";
 const Navbar = () => {
   const { navigate, isEducator } = useContext(AppContext);
   const isCourseListPage = location.pathname.includes("/course-list");
@@ -14,12 +15,21 @@ const Navbar = () => {
         isCourseListPage ? "bg-white" : "bg-cyan-100/70"
       } flex items-center justify-between px-4 sm:px-10 md:px-14 lg:px-36 border-b border-gray-500 py-4`}
     >
-      <img
+      <div
+        onClick={() => navigate("/")}
+        className=" flex justify-center items-center  gap-1 w-28 text-2xl font-bold  lg:w-32 cursor-pointer"
+      >
+        <span className="">
+          <HiOutlineAcademicCap color="blue" size={30} />
+        </span>{" "}
+        <span className=""> Neldemy </span>
+      </div>
+      {/* <img
         onClick={() => navigate("/")}
         src={assets.logo}
         alt="Logo"
         className="w-28 lg:w-32 cursor-pointer"
-      />
+      /> */}
       {/* Desktop view */}
       <div className="hidden md:flex items-center gap-5 text-gray-500">
         <div className="flex items-center gap-5">

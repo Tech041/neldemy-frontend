@@ -1,11 +1,21 @@
-import { assets } from "../../assets/assets";
+import { HiOutlineAcademicCap } from "react-icons/hi2";
+import { useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <footer className="bg-gray-900 md:px-36 text-left w-full mt-10">
       <div className="flex flex-col md:flex-row items-start px-8 md:px-0 justify-center gap-10 md:gap-32 py-10 border-b border-white/30">
         <div className="flex flex-col md:items-start items-center w-full">
-          <img src={assets.logo_dark} alt="Logo" className="" />
+          <div
+            onClick={() => navigate("/")}
+            className=" flex justify-center items-center  gap-1 w-28 text-2xl font-bold  lg:w-32 cursor-pointer"
+          >
+            <span className="">
+              <HiOutlineAcademicCap color="blue" size={30} />
+            </span>{" "}
+            <span className="text-white"> Neldemy </span>
+          </div>
           <p className="mt-6 text-center md:text-left text-sm text-white/80">
             LMS platforms are widely used in schools and universities
           </p>
@@ -14,22 +24,22 @@ const Footer = () => {
           <h2 className="font-semibold text-white mb-5">Company</h2>
           <ul className="flex md:flex-col w-full justify-between text-sm text-white/80 md:space-y-2">
             <li className="">
-              <a href="#" className="">
+              <a href="#" className="hover:text-blue-600">
                 Home
               </a>
             </li>
             <li className="">
-              <a href="#" className="">
+              <a href="#" className="hover:text-blue-600">
                 About us
               </a>
             </li>{" "}
             <li className="">
-              <a href="#" className="">
+              <a href="#" className="hover:text-blue-600">
                 Contact us
               </a>
             </li>{" "}
             <li className="">
-              <a href="#" className="">
+              <a href="#" className="hover:text-blue-600">
                 Privacy policy
               </a>
             </li>
