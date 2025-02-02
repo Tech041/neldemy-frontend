@@ -1,8 +1,9 @@
+import { useContext } from "react";
 import { HiOutlineAcademicCap } from "react-icons/hi2";
-import { useNavigate } from "react-router-dom";
+import { AppContext } from "../../context/AppContext";
 
 const Footer = () => {
-  const navigate = useNavigate();
+  const { navigate } = useContext(AppContext);
   return (
     <footer className="bg-gray-900 md:px-36 text-left w-full mt-10">
       <div className="flex flex-col md:flex-row items-start px-8 md:px-0 justify-center gap-10 md:gap-32 py-10 border-b border-white/30">

@@ -19,7 +19,7 @@ const Navbar = () => {
         onClick={() => navigate("/")}
         className=" flex justify-center items-center  gap-1 w-28 text-2xl font-bold  lg:w-32 cursor-pointer"
       >
-        <span className="">
+        <span className="hidden md:block">
           <HiOutlineAcademicCap color="blue" size={30} />
         </span>{" "}
         <span className=""> Neldemy </span>

@@ -6,15 +6,22 @@ export const AppContext = createContext();
 export const AppContextProvider = (props) => {
   const [allCourses, setAllCourses] = useState([]);
   const [isEducator, setIsEducator] = useState(true);
+  const [enrolledCourses, setEnrolledCourses] = useState([]);
 
   const currency = import.meta.env.VITE_CURRENCY;
   const navigate = useNavigate();
+
+  // fetch user enrolled courses
+  const fetchUserEnrolledCourses = async () => {
+    setEnrolledCourses(dummyCourses);
+  };
   // Fetch all courses
   const fetchAllCourses = async () => {
     setAllCourses(dummyCourses);
   };
   useEffect(() => {
     fetchAllCourses();
+    fetchUserEnrolledCourses();
   }, []);
   // Function to calculate average course rating
 
@@ -51,8 +58,9 @@ export const AppContextProvider = (props) => {
         totalLectures += chapter.chapterContent.length;
       }
     });
-    return totalLectures
+    return totalLectures;
   };
+
   const value = {
     currency,
     allCourses,
@@ -60,7 +68,11 @@ export const AppContextProvider = (props) => {
     calculateRating,
     isEducator,
     setIsEducator,
-    calculateChapterTime,calculateCourseDuaration,calculateNumberOfLectures
+    calculateChapterTime,
+    calculateCourseDuaration,
+    calculateNumberOfLectures,
+    enrolledCourses,
+    fetchUserEnrolledCourses,
   };
   return (
     <AppContext.Provider value={value}>{props.children}</AppContext.Provider>
