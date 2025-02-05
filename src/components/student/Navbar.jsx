@@ -10,7 +10,7 @@ const Navbar = () => {
   const { openSignIn } = useClerk();
   const { user } = useUser();
   return (
-    <div
+    <header
       className={`${
         isCourseListPage ? "bg-white" : "bg-cyan-100/70"
       } flex items-center justify-between px-4 sm:px-10 md:px-14 lg:px-36 border-b border-gray-500 py-4`}
@@ -73,7 +73,7 @@ const Navbar = () => {
           </button>
         )}
       </div>
-    </div>
+    </header>
   );
 };
 

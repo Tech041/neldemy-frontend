@@ -30,7 +30,7 @@ const Player = () => {
   }, [enrolledCourses]);
   return (
     <>
-      <main className="p-4 sm:p-10 flex flex-col-reverse md:grid md:grid-cols-2 gap-10 md:px-36">
+      <div className="p-4 sm:p-10 flex flex-col-reverse md:grid md:grid-cols-2 gap-10 md:px-36">
         {/* left */}
         <div className="text-gray-800">
           <h2 className="text-xl font-semibold">Course Structure</h2>
@@ -73,7 +73,7 @@ const Player = () => {
                         <li key={index} className="flex items-start gap-2 py-1">
                           <img
                             src={
-                              false ? assets.blue_tick_icon : assets.play_icon
+                               assets.play_icon
                             }
                             alt="play_icon"
                             className="w-4 h-4 mt-1"
@@ -129,7 +129,7 @@ const Player = () => {
                   {PlayerData.lectureTitle}
                 </p>
                 <button className="text-blue-600 hover:text-blue-500">
-                  {false ? "Completed" : "Mark Complete"}
+                  Mark Complete
                 </button>
               </div>
             </div>
@@ -141,7 +141,7 @@ const Player = () => {
             />
           )}
         </div>
-      </main>
+      </div>
       <Footer />
     </>
   );

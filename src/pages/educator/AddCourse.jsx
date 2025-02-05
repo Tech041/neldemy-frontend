@@ -1,5 +1,4 @@
 
-
 const AddCourse = () => {
   return <div>AddCourse</div>;
 };
