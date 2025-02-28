@@ -77,7 +77,7 @@ const CourseDetails = () => {
               {courseData.courseRatings.length > 1 ? "ratings" : "rating"})
             </p>
             <p className="">
-              {courseData.enrolledStudents.length}{" "}
+              {courseData.enrolledStudents.length}
               {courseData.enrolledStudents.length > 1 ? "students" : "student"}
             </p>
           </div>
