@@ -47,6 +47,50 @@ const AddCourse = () => {
       );
     }
   };
+
+  const handleLecture = (action, chapterId, lectureIndex) => {
+    if (action === "add") {
+      setCurrentChapterId(chapterId);
+      setShowPopup(true);
+    } else if (action === "remove") {
+      setChapters(
+        chapters.map((chapter) => {
+          if (chapter.chapterId === chapterId) {
+            chapter.chapterContent.splice(lectureIndex, 1);
+          }
+          return chapter;
+        })
+      );
+    }
+  };
+  const addLecture = () => {
+    setChapters(
+      chapters.map((chapter) => {
+        if (chapter.chapterId === currentChapterId) {
+          const newLecture = {
+            ...lectureDetails,
+            lectureOrder:
+              chapter.chapterContent.length > 0
+                ? chapter.chapterContent.slice(-1)[0].lectureOrder + 1
+                : 1,
+            lectureId: uniqid(),
+          };
+          chapter.chapterContent.push(newLecture);
+        }
+        return chapter;
+      })
+    );
+    setShowPopup(false);
+    setLectureDetails({
+      lectureTitle: "",
+      lectureDuration: "",
+      lectureUrl: "",
+      isPreviewFree: false,
+    });
+  };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  };
   useEffect(() => {
     // initiate quill only once
     if (!quillRef.current && editorRef.current) {
@@ -58,7 +102,10 @@ const AddCourse = () => {
 
   return (
     <div className="h-screen overflow-scroll flex flex-col items-start justify-between md:p-8 p-4 pt-8 pb-0">
-      <form className="flex flex-col gap-4 max-w-md w-full text-gray-500">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col gap-4 max-w-md w-full text-gray-500"
+      >
         <div className="flex flex-col gap-1">
           <p className="">Course Title</p>
           <input
@@ -125,6 +172,7 @@ const AddCourse = () => {
               <div className="flex justify-between items-center p-4 border-b">
                 <div className="flex items-center">
                   <img
+                    onClick={() => handleChapter("toggle", chapter.chapterId)}
                     src={assets.dropdown_icon}
                     alt=""
                     width={14}
@@ -137,9 +185,11 @@ const AddCourse = () => {
                   </span>
                 </div>
                 <span className="text-gray-500">
-                  {chapter.chapterContent.length} Lectures
+                  {chapter.chapterContent.length}{" "}
+                  {chapter.chapterContent.length > 1 ? "Lectures" : "Lecture"}
                 </span>
                 <img
+                  onClick={() => handleChapter("remove", chapter.chapterId)}
                   src={assets.cross_icon}
                   alt=""
                   className="cursor-pointer"
@@ -165,13 +215,23 @@ const AddCourse = () => {
                         - {lecture.isPreviewFree ? "Free Preview" : "Paid"}
                       </span>
                       <img
+                        onClick={() =>
+                          handleLecture(
+                            "remove",
+                            chapter.chapterId,
+                            lectureIndex
+                          )
+                        }
                         src={assets.cross_icon}
                         alt=""
                         className="cursor-pointer"
                       />
                     </div>
                   ))}
-                  <div className="inline-flex bg-gray-100 p-2 rounded cursor-pointer mt-2">
+                  <div
+                    onClick={() => handleLecture("add", chapter.chapterId)}
+                    className="inline-flex bg-gray-100 p-2 rounded cursor-pointer mt-2"
+                  >
                     + Add Lecture
                   </div>
                 </div>
@@ -245,6 +305,7 @@ const AddCourse = () => {
                   />
                 </div>
                 <button
+                  onClick={addLecture}
                   type="button"
                   className="w-full bg-blue-400 text-white px-4 py-2 rounded"
                 >
