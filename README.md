@@ -1,8 +1,29 @@
-# Neldemy
+Neldemy LMS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern Learning Management System (LMS) built with React, Tailwind CSS, and Clerk, featuring a Google Gemini chatbot for enhanced user experience.
 
-Currently, two official plugins are available:
+Features
+- User-friendly interface built with React and Tailwind CSS
+- Authentication and authorization managed by Clerk
+- Google Gemini chatbot integration for interactive learning support
+- LMS UI for managing courses, lessons, and user progress
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Technologies Used
+- Frontend: React.js
+- Styling: Tailwind CSS
+- Authentication: Clerk
+- Chatbot: Google Gemini
+
+Getting Started
+1. Clone the repository
+2. Install dependencies: npm install
+3. Start the application: npm run dev
+   
+Key Benefits
+- Engaging learning experience with interactive chatbot support
+- Streamlined user management with Clerk authentication
+- Customizable LMS UI for tailored learning experiences
+
+License
+This project is licensed under the MIT License.
+
