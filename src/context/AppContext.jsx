@@ -2,12 +2,14 @@ import { createContext, useEffect, useState } from "react";
 import { dummyCourses } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import humanizeDuration from "humanize-duration";
-import { useAuth, useUser } from "@clerk/clerk-react";
+
 import run from "../config/Gemini";
 export const AppContext = createContext();
-export const AppContextProvider = ({children}) => {
+export const AppContextProvider = ({ children }) => {
   const [allCourses, setAllCourses] = useState([]);
   const [isEducator, setIsEducator] = useState(true);
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("user"));
+
   const [enrolledCourses, setEnrolledCourses] = useState([]);
   // For gemini
 
@@ -20,8 +22,6 @@ export const AppContextProvider = ({children}) => {
 
   const currency = import.meta.env.VITE_CURRENCY;
   const navigate = useNavigate();
-  const { getToken } = useAuth();
-  const { user } = useUser();
 
   // for gemini
 
@@ -68,7 +68,6 @@ export const AppContextProvider = ({children}) => {
     setInput("");
   };
 
-
   // fetch user enrolled courses
   const fetchUserEnrolledCourses = async () => {
     setEnrolledCourses(dummyCourses);
@@ -82,15 +81,6 @@ export const AppContextProvider = ({children}) => {
     fetchUserEnrolledCourses();
   }, []);
 
-  // Getting token
-  const logToken = async () => {
-    console.log(await getToken());
-  };
-  useEffect(() => {
-    if (user) {
-      logToken();
-    }
-  }, [user]);
   // Function to calculate average course rating
 
   const calculateRating = (course) => {
@@ -130,6 +120,8 @@ export const AppContextProvider = ({children}) => {
   };
 
   const value = {
+    isAuth,
+    setIsAuth,
     currency,
     allCourses,
     navigate,
@@ -152,9 +144,7 @@ export const AppContextProvider = ({children}) => {
     resultData,
     input,
     setInput,
-    newChat
+    newChat,
   };
-  return (
-    <AppContext.Provider value={value}>{children}</AppContext.Provider>
-  );
+  return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
